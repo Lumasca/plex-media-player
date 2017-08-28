@@ -45,6 +45,9 @@ static void preinitQt()
   QCoreApplication::setApplicationVersion(Version::GetVersionString());
   QCoreApplication::setOrganizationDomain("plex.tv");
 
+  // Probably makes QtWebEngine::initialize() use the correct surface format.
+  QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+
 #ifdef Q_OS_WIN32
   QVariant useOpengl = SettingsComponent::readPreinitValue(SETTINGS_SECTION_MAIN, "useOpenGL");
 
